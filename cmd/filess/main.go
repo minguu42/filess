@@ -13,8 +13,8 @@ func main() {
 	var port int
 	flag.IntVar(&port, "port", envPort, "port to use")
 	flag.IntVar(&port, "p", envPort, "port to use (short)")
-
 	flag.Parse()
+
 	fmt.Println(port)
 	fmt.Println("End of main")
 }
