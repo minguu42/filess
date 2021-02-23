@@ -3,18 +3,19 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
-	"strconv"
+	"github.com/minguu42/filess"
 )
 
 func main() {
-	fmt.Println("Start of main")
-	envPort, _ := strconv.Atoi(os.Getenv("PORT"))
-	var port int
-	flag.IntVar(&port, "port", envPort, "port to use")
-	flag.IntVar(&port, "p", envPort, "port to use (short)")
+	fmt.Println("START: main")
 	flag.Parse()
+	arg := flag.Arg(0)
 
-	fmt.Println(port)
-	fmt.Println("End of main")
+	if arg == "" {
+		fmt.Println("JSONファイルが指定されていません。")
+	} else {
+		fmt.Printf("%T: %[1]v\n", arg)
+		filess.LoadJson(arg)
+	}
+	fmt.Println("END: main")
 }
