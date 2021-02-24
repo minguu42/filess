@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"path/filepath"
+	"strings"
 )
 
 func OrganizeFile(config Config) {
@@ -12,18 +13,25 @@ func OrganizeFile(config Config) {
 	targets := config.Targets
 	sources := config.Sources
 
-	// 分類するためのプリフィックスの取得
-
-
 	// ソースディレクトリを一つずつ調べる
 	for _, source := range sources {
+		// ディレクトリの中身のコレクションを取得する。
 		files, err := ioutil.ReadDir(source)
 		if err != nil {
 			log.Fatal(err)
 		}
-		for _, file := range files {
-			fmt.Println(filepath.Join(source, file.Name()))
+		// ターゲットディレクトリを一つずつ見ていく。
+		for _, target := range targets {
+			prefix := filepath.Base(target) + "_"
+			// ファイルを一つずつ検査する。
+			for _, file := range files {
+				if strings.HasPrefix(file.Name(), prefix) {
+					nextPath := filepath.Join(target, file.Name())
+					// TODO: ここでファイルの移動を実装する。ファイルを移動させたらログを出す。
+					fmt.Println(nextPath)
+				} else {
+				}
+			}
 		}
 	}
-	fmt.Println(targets)
 }
