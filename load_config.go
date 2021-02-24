@@ -13,7 +13,7 @@ type Config struct {
 	Sources []string `json:"sources"`
 }
 
-func LoadJson(path string) {
+func LoadJson(path string) Config {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Println(err)
@@ -25,5 +25,5 @@ func LoadJson(path string) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(config)
+	return config
 }
