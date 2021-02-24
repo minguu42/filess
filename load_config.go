@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 )
 
@@ -20,7 +21,9 @@ func LoadJson(path string) {
 	}
 
 	var config Config
-	json.Unmarshal(raw, &config)
+	if err := json.Unmarshal(raw, &config); err != nil {
+		log.Fatal(err)
+	}
 
 	fmt.Println(config)
 }
