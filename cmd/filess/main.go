@@ -15,7 +15,7 @@ func main() {
 		fmt.Println("JSONファイルが指定されていません。")
 	} else {
 		config := filess.LoadJson(arg)
-		filess.OrganizeFile(config)
+		filess.Organize(config)
 	}
 	fmt.Println("END: main")
 }

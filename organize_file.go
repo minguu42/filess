@@ -8,30 +8,32 @@ import (
 	"strings"
 )
 
-func OrganizeFile(config Config) {
+func Organize(config Config) {
 	// ターゲットディレクトリとソースディレクトリの取得
 	targets := config.Targets
 	sources := config.Sources
 
 	// ソースディレクトリを一つずつ調べる
-	for _, source := range sources {
-		// ディレクトリの中身のコレクションを取得する。
-		files, err := ioutil.ReadDir(source)
-		if err != nil {
-			log.Fatal(err)
+	for _, target := range targets {
+		for _, source := range sources {
+			organizeFile(target, source)
 		}
-		// ターゲットディレクトリを一つずつ見ていく。
-		for _, target := range targets {
-			prefix := filepath.Base(target) + "_"
-			// ファイルを一つずつ検査する。
-			for _, file := range files {
-				if strings.HasPrefix(file.Name(), prefix) {
-					nextPath := filepath.Join(target, file.Name())
-					// TODO: ここでファイルの移動を実装する。ファイルを移動させたらログを出す。
-					fmt.Println(nextPath)
-				} else {
-				}
-			}
+	}
+}
+
+// 一つのソースディレクトリから１つのターゲットディレクトリにファイルを整理する。
+func organizeFile(target, source string) {
+	prefix := filepath.Base(target) + "_"
+	files, err := ioutil.ReadDir(source)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		if strings.HasPrefix(file.Name(), prefix) {
+			nextPath := filepath.Join(target, file.Name())
+			// TODO: ソースからターゲットにファイルを移動させる
+			fmt.Println(nextPath)
 		}
 	}
 }
