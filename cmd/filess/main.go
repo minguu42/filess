@@ -23,7 +23,7 @@ func main() {
 	if arg == "" {
 		fmt.Println("JSONファイルが指定されていません。")
 	} else {
-		config := filess.LoadJson(arg)
+		config := filess.LoadJSON(arg)
 		filess.Organize(config)
 	}
 }
