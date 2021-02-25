@@ -34,7 +34,6 @@ func organizeFile(target, source string) {
 		if strings.HasPrefix(file.Name(), prefix) {
 			currentPath := filepath.Join(source, file.Name())
 			nextPath := filepath.Join(target, file.Name())
-			// TODO: ソースからターゲットにファイルを移動させる
 			if err := os.Rename(currentPath, nextPath); err != nil {
 				log.Fatal(err)
 			} else {
