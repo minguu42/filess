@@ -37,7 +37,7 @@ func organizeFile(target, source string) {
 			if err := os.Rename(currentPath, nextPath); err != nil {
 				log.Fatal(err)
 			} else {
-				fmt.Printf("Move to %v from %v\n",  currentPath, nextPath)
+				fmt.Printf("Move to %v from %v\n", currentPath, nextPath)
 			}
 		}
 	}
