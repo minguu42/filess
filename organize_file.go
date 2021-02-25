@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -31,9 +32,14 @@ func organizeFile(target, source string) {
 
 	for _, file := range files {
 		if strings.HasPrefix(file.Name(), prefix) {
+			currentPath := filepath.Join(source, file.Name())
 			nextPath := filepath.Join(target, file.Name())
 			// TODO: ソースからターゲットにファイルを移動させる
-			fmt.Println(nextPath)
+			if err := os.Rename(currentPath, nextPath); err != nil {
+				log.Fatal(err)
+			} else {
+				fmt.Printf("Move to %v from %v\n",  currentPath, nextPath)
+			}
 		}
 	}
 }

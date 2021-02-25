@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println("START: main")
 	flag.Parse()
 	arg := flag.Arg(0)
 
@@ -17,5 +16,4 @@ func main() {
 		config := filess.LoadJson(arg)
 		filess.Organize(config)
 	}
-	fmt.Println("END: main")
 }
