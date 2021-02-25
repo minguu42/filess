@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Organize はConfigを受け取り、ファイルを整理します。
 func Organize(config Config) {
 	// ターゲットディレクトリとソースディレクトリの取得
 	targets := config.Targets
@@ -22,7 +23,7 @@ func Organize(config Config) {
 	}
 }
 
-// 一つのソースディレクトリから１つのターゲットディレクトリにファイルを整理する。
+// organizeFileは、一つのソースから１つのターゲットにファイルを整理する。
 func organizeFile(target, source string) {
 	prefix := filepath.Base(target) + "_"
 	files, err := ioutil.ReadDir(source)

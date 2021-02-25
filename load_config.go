@@ -8,11 +8,13 @@ import (
 	"os"
 )
 
+// Config はターゲットディレクトリのパスのスライスとソースディレクトリのパスのスライスを管理します。
 type Config struct {
 	Targets []string `json:"targets"`
 	Sources []string `json:"sources"`
 }
 
+// LoadJSON はJSONファイルへのパスを受け取り、読み込んでConfigを返します。
 func LoadJSON(path string) Config {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
