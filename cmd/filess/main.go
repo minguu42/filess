@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println("START: main")
 	flag.Parse()
 	arg := flag.Arg(0)
 
@@ -15,7 +14,6 @@ func main() {
 		fmt.Println("JSONファイルが指定されていません。")
 	} else {
 		config := filess.LoadJson(arg)
-		filess.OrganizeFile(config)
+		filess.Organize(config)
 	}
-	fmt.Println("END: main")
 }
