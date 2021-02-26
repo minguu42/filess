@@ -8,6 +8,7 @@ import (
 )
 
 var version = "0.1.0"
+var revision = ""
 
 func main() {
 	var showVersion bool
@@ -15,7 +16,7 @@ func main() {
 	flag.BoolVar(&showVersion, "version", false, "show version")
 	flag.Parse()
 	if showVersion {
-		fmt.Println("version:", version)
+		fmt.Printf("version: %v-%v\n", version, revision)
 		return
 	}
 
