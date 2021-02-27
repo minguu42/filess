@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 
 	"github.com/minguu42/filess"
 )
@@ -21,10 +22,10 @@ func main() {
 	}
 
 	arg := flag.Arg(0)
-	if arg == "" {
-		fmt.Println("JSONファイルが指定されていません。")
+	if arg == "init" {
+		// TODO: initコマンドの実装処理
+		log.Println("now developing...")
 	} else {
-		config := filess.LoadJSON(arg)
-		filess.Organize(config)
+		filess.Organize(arg)
 	}
 }

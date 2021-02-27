@@ -10,8 +10,9 @@ import (
 )
 
 // Organize はConfigを受け取り、ファイルを整理します。
-func Organize(config Config) {
+func Organize(jsonPath string) {
 	// ターゲットディレクトリとソースディレクトリの取得
+	config := LoadJSON(jsonPath)
 	targets := config.Targets
 	sources := config.Sources
 
