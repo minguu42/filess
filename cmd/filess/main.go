@@ -8,7 +8,7 @@ import (
 	"github.com/minguu42/filess"
 )
 
-var version = "0.1.0"
+const version = "0.1.0"
 var revision = ""
 
 func main() {
@@ -17,7 +17,8 @@ func main() {
 	flag.BoolVar(&showVersion, "version", false, "show version")
 	flag.Parse()
 	if showVersion {
-		fmt.Printf("version: %v-%v\n", version, revision)
+		fmt.Println("version:", version)
+		fmt.Println("revision:", revision)
 		return
 	}
 
