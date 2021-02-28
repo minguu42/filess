@@ -48,6 +48,11 @@ func Init() {
 	log.Printf("Create %s\n", configFilePath)
 }
 
+func ExistsFile(filename string) bool {
+	_, err := os.Stat(filename)
+	return err == nil
+}
+
 // LoadJSON はJSONファイルへのパスを受け取り、読み込んでConfigを返します。
 func LoadJSON(path string) config {
 	raw, err := ioutil.ReadFile(path)

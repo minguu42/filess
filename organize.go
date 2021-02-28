@@ -19,6 +19,9 @@ func Organize(jsonPath string) {
 	// ソースディレクトリを一つずつ調べる
 	for _, target := range targets {
 		for _, source := range sources {
+			if target == "" || source == "" {
+				continue
+			}
 			organizeFile(target, source)
 		}
 	}
