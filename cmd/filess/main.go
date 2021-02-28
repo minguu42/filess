@@ -3,8 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
-
 	"github.com/minguu42/filess"
 )
 
@@ -25,7 +23,7 @@ func main() {
 	arg := flag.Arg(0)
 	if arg == "init" {
 		// TODO: initコマンドの実装処理
-		log.Println("now developing...")
+		filess.Init()
 	} else {
 		filess.Organize(arg)
 	}
