@@ -3,13 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/minguu42/filess"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/minguu42/filess"
 )
 
 const version = "0.1.0"
+
 var revision = ""
 
 func main() {
