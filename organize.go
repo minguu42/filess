@@ -27,7 +27,7 @@ func Organize(jsonPath string) {
 	}
 }
 
-// organizeFileは、一つのソースから１つのターゲットにファイルを整理する。
+// organizeFile は、一つのソースから１つのターゲットにファイルを整理する。
 func organizeFile(target, source string) {
 	prefix := filepath.Base(target) + "_"
 	files, err := ioutil.ReadDir(source)
