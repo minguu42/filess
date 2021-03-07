@@ -14,14 +14,12 @@ type Config struct {
 	Sources []string `json:"sources"`
 }
 
-// ExistsFile はファイルの存在を確認する関数である。
-func ExistsFile(filename string) bool {
+func existsFile(filename string) bool {
 	_, err := os.Stat(filename)
 	return err == nil
 }
 
-// LoadJSON はJSONファイルへのパスを受け取り、読み込んでConfigを返す。
-func LoadJSON(path string) Config {
+func loadJSON(path string) Config {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Println(err)

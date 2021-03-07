@@ -63,12 +63,12 @@ func Filess(jsonPath string) {
 			log.Fatal(err)
 		}
 		configFilePath := filepath.Join(userPath, ".config", "filess", "config.json")
-		if ExistsFile(configFilePath) {
-			Organize(configFilePath)
+		if existsFile(configFilePath) {
+			move(configFilePath)
 		} else {
 			log.Printf("JSONパスが指定されていません。")
 		}
 	} else {
-		Organize(jsonPath)
+		move(jsonPath)
 	}
 }
