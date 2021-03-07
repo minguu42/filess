@@ -44,15 +44,11 @@ func Init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer func() {
-		if err := file.Close(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	defer file.Close()
 	if _, err := file.Write(b); err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Create %s\n", configFilePath)
+	log.Printf("Initialize %s\n", configFilePath)
 }
 
 // Filess は、filessコマンドの実装である。

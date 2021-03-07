@@ -10,12 +10,8 @@ import (
 )
 
 func move(jsonPath string) {
-	// ターゲットディレクトリとソースディレクトリの取得
-	config := loadJSON(jsonPath)
-	targets := config.Targets
-	sources := config.Sources
+	targets, sources := loadJSON(jsonPath)
 
-	// ソースディレクトリを一つずつ調べる
 	for _, target := range targets {
 		for _, source := range sources {
 			if target == "" || source == "" {

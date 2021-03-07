@@ -2,7 +2,6 @@ package filess
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -20,11 +19,10 @@ func existsFile(filename string) bool {
 	return err == nil
 }
 
-func loadJSON(path string) Config {
+func loadJSON(path string) ([]string, []string) {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 
 	var config Config
@@ -32,5 +30,5 @@ func loadJSON(path string) Config {
 		log.Fatal(err)
 	}
 
-	return config
+	return config.Targets, config.Sources
 }
