@@ -54,15 +54,21 @@ func Init() {
 	log.Printf("Create %s\n", configFilePath)
 }
 
-func Filess() {
-	userPath, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
-	configFilePath := filepath.Join(userPath, ".config", "filess", "config.json")
-	if ExistsFile(configFilePath) {
-		Organize(configFilePath)
+// Filess は、filessコマンドの実装である。
+// jsonPathが指定されてる時はそのJSONを、されていない時は設定の規定のJSONを使用する。
+func Filess(jsonPath string) {
+	if jsonPath == "" {
+		userPath, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatal(err)
+		}
+		configFilePath := filepath.Join(userPath, ".config", "filess", "config.json")
+		if ExistsFile(configFilePath) {
+			Organize(configFilePath)
+		} else {
+			log.Printf("JSONパスが指定されていません。")
+		}
 	} else {
-		log.Printf("JSONパスが指定されていません。")
+		Organize(jsonPath)
 	}
 }
