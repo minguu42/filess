@@ -9,26 +9,18 @@ import (
 	"strings"
 )
 
-// Organize はConfigを受け取り、ファイルを整理します。
-func Organize(jsonPath string) {
-	// ターゲットディレクトリとソースディレクトリの取得
-	config := LoadJSON(jsonPath)
-	targets := config.Targets
-	sources := config.Sources
-
-	// ソースディレクトリを一つずつ調べる
+func move(targets, sources []string) {
 	for _, target := range targets {
 		for _, source := range sources {
 			if target == "" || source == "" {
 				continue
 			}
-			organizeFile(target, source)
+			moveFile(target, source)
 		}
 	}
 }
 
-// organizeFileは、一つのソースから１つのターゲットにファイルを整理する。
-func organizeFile(target, source string) {
+func moveFile(target, source string) {
 	prefix := filepath.Base(target) + "_"
 	files, err := ioutil.ReadDir(source)
 	if err != nil {

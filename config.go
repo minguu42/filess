@@ -2,69 +2,45 @@ package filess
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/fs"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
 )
 
-// config はターゲットディレクトリのパスのスライスとソースディレクトリのパスのスライスを管理します。
-type config struct {
-	Targets []string `json:"targets"`
-	Sources []string `json:"sources"`
+// Config はターゲットディレクトリのパスのスライスとソースディレクトリのパスのスライスを管理します。
+type Config struct {
+	Targets     []string `json:"targets"`
+	Sources     []string `json:"sources"`
+	Inspections []string `json:"inspections"`
 }
 
-func Init() {
-	userPath, _ := os.UserHomeDir()
-	configDirPath := filepath.Join(userPath, ".config", "filess")
-	perm := os.ModeDir + (fs.ModePerm - 0022)
-	// ディレクトリの作成
-	if err := os.MkdirAll(configDirPath, perm); err != nil {
-		log.Fatal(err)
-	}
-
-	// 書き込み内容の作成
-	initialization := config{
-		[]string{""},
-		[]string{""},
-	}
-	b, err := json.MarshalIndent(initialization, "", "  ")
+func getConfigDirPath() string {
+	userPath, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
 	}
+	return filepath.Join(userPath, ".config", "filess")
+}
 
-	// config.jsonファイルの作成
-	configFilePath := filepath.Join(configDirPath, "config.json")
-	file, err := os.Create(configFilePath)
+func getConfigFilePath() string {
+	userPath, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
-	if _, err := file.Write(b); err != nil {
-		log.Fatal(err)
-	}
-	log.Printf("Create %s\n", configFilePath)
+	return filepath.Join(userPath, ".config", "filess", "config.json")
 }
 
-func ExistsFile(filename string) bool {
-	_, err := os.Stat(filename)
-	return err == nil
-}
-
-// LoadJSON はJSONファイルへのパスを受け取り、読み込んでConfigを返します。
-func LoadJSON(path string) config {
+func loadConfig(path string) ([]string, []string, []string) {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 
-	var config config
+	var config Config
 	if err := json.Unmarshal(raw, &config); err != nil {
 		log.Fatal(err)
 	}
 
-	return config
+	return config.Targets, config.Sources, config.Inspections
 }
