@@ -55,15 +55,11 @@ func Init() {
 // jsonPathが指定されてる時はそのJSONを、されていない時は設定の規定のJSONを使用する。
 func Filess(jsonPath string) {
 	if jsonPath == "" {
-		userPath, err := os.UserHomeDir()
-		if err != nil {
-			log.Fatal(err)
-		}
-		configFilePath := filepath.Join(userPath, ".config", "filess", "config.json")
-		if existsFile(configFilePath) {
-			move(configFilePath)
+		configPath := getConfigPath()
+		if existsFile(configPath) {
+			move(configPath)
 		} else {
-			log.Printf("JSONパスが指定されていません。")
+			log.Println("設定ファイルが存在しません")
 		}
 	} else {
 		move(jsonPath)
