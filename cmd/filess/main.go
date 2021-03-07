@@ -14,9 +14,16 @@ func main() {
 	var IsVOptionActive bool
 	flag.BoolVar(&IsVOptionActive, "v", false, "show version")
 	flag.BoolVar(&IsVOptionActive, "version", false, "show version")
+	var IsCOptionActive bool
+	flag.BoolVar(&IsCOptionActive, "c", false, "show config")
+	flag.BoolVar(&IsCOptionActive, "config", false, "show config")
 	flag.Parse()
 	if IsVOptionActive {
 		filess.ShowVersion(version, revision)
+		return
+	}
+	if IsCOptionActive {
+		filess.ShowConfig()
 		return
 	}
 
