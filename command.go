@@ -15,6 +15,8 @@ func ShowVersion(version, revision string) {
 	fmt.Println("revision:", revision)
 }
 
+// ShowConfig はfiless -cの実装である。
+// 設定を表示する。
 func ShowConfig() {
 	configFilePath := getConfigFilePath()
 	targets, sources, inspections := loadConfig(configFilePath)
