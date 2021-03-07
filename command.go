@@ -57,11 +57,13 @@ func Filess(jsonPath string) {
 	if jsonPath == "" {
 		configPath := getConfigPath()
 		if existsFile(configPath) {
-			move(configPath)
+			targets, sources := loadJSON(jsonPath)
+			move(targets, sources)
 		} else {
 			log.Println("設定ファイルが存在しません")
 		}
 	} else {
-		move(jsonPath)
+		targets, sources := loadJSON(jsonPath)
+		move(targets, sources)
 	}
 }

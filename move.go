@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-func move(jsonPath string) {
-	targets, sources := loadJSON(jsonPath)
+func move(targets, sources []string) {
+
 
 	for _, target := range targets {
 		for _, source := range sources {
