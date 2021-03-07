@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -15,13 +14,12 @@ const version = "0.1.0"
 var revision = ""
 
 func main() {
-	var showVersion bool
-	flag.BoolVar(&showVersion, "v", false, "show version")
-	flag.BoolVar(&showVersion, "version", false, "show version")
+	var IsVOptionActive bool
+	flag.BoolVar(&IsVOptionActive, "v", false, "show version")
+	flag.BoolVar(&IsVOptionActive, "version", false, "show version")
 	flag.Parse()
-	if showVersion {
-		fmt.Println("version:", version)
-		fmt.Println("revision:", revision)
+	if IsVOptionActive {
+		filess.ShowVersion(version, revision)
 		return
 	}
 
