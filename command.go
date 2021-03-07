@@ -54,13 +54,13 @@ func Filess(jsonPath string) {
 		if existsFile(configFilePath) {
 			targets, sources, inspections := loadConfig(configFilePath)
 			move(targets, sources)
-			log.Println(inspections)
+			inspect(inspections)
 		} else {
 			log.Println("設定ファイルが存在しません")
 		}
 	} else {
 		targets, sources, inspections := loadConfig(jsonPath)
 		move(targets, sources)
-		log.Println(inspections)
+		inspect(inspections)
 	}
 }
