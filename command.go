@@ -6,7 +6,6 @@ import (
 	"io/fs"
 	"log"
 	"os"
-	"path/filepath"
 )
 
 // ShowVersion はfiless -vの実装である。
@@ -25,25 +24,23 @@ func Init() {
 		log.Fatal(err)
 	}
 
-	// 書き込み内容の作成
-	initialization := Config{
+	initialConfig := Config{
 		[]string{""},
 		[]string{""},
 		[]string{""},
 	}
-	b, err := json.MarshalIndent(initialization, "", "  ")
+	contents, err := json.MarshalIndent(initialConfig, "", "  ")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Config.jsonファイルの作成
-	configFilePath := filepath.Join(configDirPath, "Config.json")
+	configFilePath := getConfigFilePath()
 	file, err := os.Create(configFilePath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
-	if _, err := file.Write(b); err != nil {
+	if _, err := file.Write(contents); err != nil {
 		log.Fatal(err)
 	}
 	log.Printf("Initialize %s\n", configFilePath)
