@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"os"
 )
 
 // Config はターゲットディレクトリのパスのスライスとソースディレクトリのパスのスライスを管理します。
@@ -12,11 +11,6 @@ type Config struct {
 	Targets     []string `json:"targets"`
 	Sources     []string `json:"sources"`
 	Inspections []string `json:"inspections"`
-}
-
-func existsFile(filename string) bool {
-	_, err := os.Stat(filename)
-	return err == nil
 }
 
 func loadJSON(path string) ([]string, []string) {
