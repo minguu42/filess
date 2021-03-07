@@ -15,6 +15,23 @@ func ShowVersion(version, revision string) {
 	fmt.Println("revision:", revision)
 }
 
+func ShowConfig() {
+	configFilePath := getConfigFilePath()
+	targets, sources, inspections := loadConfig(configFilePath)
+	fmt.Println("[targets]")
+	for _, target := range targets {
+		fmt.Println(target)
+	}
+	fmt.Println("[sources]")
+	for _, source := range sources {
+		fmt.Println(source)
+	}
+	fmt.Println("[inspections]")
+	for _, inspection := range inspections {
+		fmt.Println(inspection)
+	}
+}
+
 // Init はfiless initコマンドの実装である。
 // 設定ファイルを作成する。既に存在する場合は、上書きする。
 func Init() {
