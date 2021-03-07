@@ -31,6 +31,7 @@ func Init() {
 	initialization := Config{
 		[]string{""},
 		[]string{""},
+		[]string{""},
 	}
 	b, err := json.MarshalIndent(initialization, "", "  ")
 	if err != nil {

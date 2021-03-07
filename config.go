@@ -10,8 +10,9 @@ import (
 
 // Config はターゲットディレクトリのパスのスライスとソースディレクトリのパスのスライスを管理します。
 type Config struct {
-	Targets []string `json:"targets"`
-	Sources []string `json:"sources"`
+	Targets     []string `json:"targets"`
+	Sources     []string `json:"sources"`
+	Inspections []string `json:"inspections"`
 }
 
 func existsFile(filename string) bool {
