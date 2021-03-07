@@ -31,7 +31,7 @@ func getConfigFilePath() string {
 	return filepath.Join(userPath, ".config", "filess", "config.json")
 }
 
-func loadJSON(path string) ([]string, []string) {
+func loadConfig(path string) ([]string, []string, []string) {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatal(err)
@@ -42,5 +42,5 @@ func loadJSON(path string) ([]string, []string) {
 		log.Fatal(err)
 	}
 
-	return config.Targets, config.Sources
+	return config.Targets, config.Sources, config.Inspections
 }

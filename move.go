@@ -10,8 +10,6 @@ import (
 )
 
 func move(targets, sources []string) {
-
-
 	for _, target := range targets {
 		for _, source := range sources {
 			if target == "" || source == "" {
