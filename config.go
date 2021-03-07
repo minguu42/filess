@@ -15,7 +15,15 @@ type Config struct {
 	Inspections []string `json:"inspections"`
 }
 
-func getConfigPath() string {
+func getConfigDirPath() string {
+	userPath, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return filepath.Join(userPath, ".config", "filess")
+}
+
+func getConfigFilePath() string {
 	userPath, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
