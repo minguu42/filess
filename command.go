@@ -81,7 +81,7 @@ func AddToConfig(path, class string) {
 	if _, err := file.Write(contents); err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Add %v to path\n", path)
+	log.Printf("Add %v to %v\n", path, class)
 }
 
 // Init はfiless initコマンドの実装である。

@@ -23,6 +23,9 @@ func main() {
 	var source string
 	flag.StringVar(&source, "s", "", "add the source path to config")
 	flag.StringVar(&source, "source", "", "add the source path to config")
+	var inspection string
+	flag.StringVar(&inspection, "i", "", "add the inspection path to config")
+	flag.StringVar(&inspection, "inspection", "", "add the inspection path to config")
 	flag.Parse()
 	if IsVOptionActive {
 		filess.ShowVersion(version, revision)
@@ -34,9 +37,14 @@ func main() {
 	}
 	if target != "" {
 		filess.AddToConfig(target, "targets")
+		return
 	}
 	if source != "" {
 		filess.AddToConfig(source, "sources")
+		return
+	}
+	if inspection != "" {
+		filess.AddToConfig(inspection, "inspections")
 		return
 	}
 
