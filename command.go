@@ -46,6 +46,7 @@ func ShowConfig() {
 	fmt.Println()
 }
 
+// AddToConfig はfiless -s | -t | -iの実装である。
 func AddToConfig(path, class string) {
 	if !existsDir(path) {
 		return
