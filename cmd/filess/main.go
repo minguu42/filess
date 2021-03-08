@@ -17,6 +17,9 @@ func main() {
 	var IsCOptionActive bool
 	flag.BoolVar(&IsCOptionActive, "c", false, "show config")
 	flag.BoolVar(&IsCOptionActive, "config", false, "show config")
+	var source string
+	flag.StringVar(&source, "s", "", "add the source path to config")
+	flag.StringVar(&source, "source", "", "add the source path to config")
 	flag.Parse()
 	if IsVOptionActive {
 		filess.ShowVersion(version, revision)
@@ -24,6 +27,10 @@ func main() {
 	}
 	if IsCOptionActive {
 		filess.ShowConfig()
+		return
+	}
+	if source != "" {
+		filess.AddToConfig(source, "sources")
 		return
 	}
 
