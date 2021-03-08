@@ -2,24 +2,35 @@
 
 ## 概要
 
-filessは、簡単にファイルを整理するためのCLIツールです。
-ファイル名に`<ディレクトリ名>_`というプリフィックスをつけて、config.jsonファイルにソースとターゲットを指定しておくと`filess`というコマンドを打つだけでファイルを適切な場所に移動させることができます。
+`filess`は、簡単にファイルを整理するためのCLIツールです。
+
+`filess`は、ソースディレクトリから移動させるファイルを検索し、条件を満たすファイルをターゲットディレクトリに移動させます。
+ソースディレクトリとターゲットディレクトリは、基本的に`$HOME/.config/filess/config.json`に記述します。
+
+ファイル名に`<ディレクトリ名>_`というプリフィックスをつけて、ファイルのあるべきディレクトリを指定します。config.jsonファイルにソースとターゲットを指定しておくと`filess`というコマンドを打つだけでファイルを適切な場所に移動させることができます。
 
 ## インストール
 
 ### Goからインストールする
 
-`go install github.com/minguu42/filess/cmd/filess`でインストールできます。
+```bash
+$ go install github.com/minguu42/filess/cmd/filess
+$ filess -v
+version: 0.1.0
+revision:
+```
+
+でインストールできます。
 
 ### バイナリを$PATHに読み込ませる
 
-GitHubからバイナリをダウンロードして、PATHを読み込む場所に配置してください。
+GitHubからバイナリをダウンロードして、`$PATH`に配置してください。
 
-## 使い方
+## コマンド一覧
 
 ### filess init
 
-`filess init`コマンドで`$HOME/.config/filess/config.json`が作成されます。
+`filess init`コマンドで設定ファイル`$HOME/.config/filess/config.json`が作成されます。
 以下のようになっています。
 
 ```json:config.json
