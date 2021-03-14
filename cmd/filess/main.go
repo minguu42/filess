@@ -32,7 +32,7 @@ func main() {
 		return
 	}
 	if IsCOptionActive {
-		filess.ShowConfig()
+		filess.ShowConfig(filess.GetConfigFilePath())
 		return
 	}
 	if target != "" {

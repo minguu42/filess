@@ -23,7 +23,7 @@ func getConfigDirPath() string {
 	return filepath.Join(userPath, ".config", "filess")
 }
 
-func getConfigFilePath() string {
+func GetConfigFilePath() string {
 	userPath, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
