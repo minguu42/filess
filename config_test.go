@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+func TestGetConfigDirPath(t *testing.T) {
+	if "/Users/hoge/.config/filess" != getConfigDirPath("/Users/hoge") {
+		t.Fatal("Error")
+	}
+}
+
+func TestGetConfigFilePath(t *testing.T) {
+	if "/Users/hoge/.config/filess/config.json" != GetConfigFilePath("/Users/hoge") {
+		t.Fatal("Error")
+	}
+}
+
 func TestLoadConfig(t *testing.T) {
 	targets, sources, inspections := loadConfig("testdata/config.json")
 

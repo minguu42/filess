@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"log"
+	"os"
 
 	"github.com/minguu42/filess"
 )
@@ -32,7 +34,11 @@ func main() {
 		return
 	}
 	if IsCOptionActive {
-		filess.ShowConfig(filess.GetConfigFilePath())
+		userPath, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatal(err)
+		}
+		filess.ShowConfig(filess.GetConfigFilePath(userPath))
 		return
 	}
 	if target != "" {
