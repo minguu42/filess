@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 )
 
@@ -14,12 +15,20 @@ type Config struct {
 	Inspections []string `json:"inspections"`
 }
 
-func getConfigDirPath(userPath string) string {
-	return filepath.Join(userPath, ".config", "filess")
+func getConfigDirPath() string {
+	userHomePath, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return filepath.Join(userHomePath, ".config", "filess")
 }
 
-func GetConfigFilePath(userPath string) string {
-	return filepath.Join(userPath, ".config", "filess", "config.json")
+func GetConfigFilePath() string {
+	userHomePath, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return filepath.Join(userHomePath, ".config", "filess", "config.json")
 }
 
 func loadConfig(path string) ([]string, []string, []string) {

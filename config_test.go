@@ -1,18 +1,31 @@
 package filess
 
 import (
+	"log"
+	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
 
 func TestGetConfigDirPath(t *testing.T) {
-	if "/Users/hoge/.config/filess" != getConfigDirPath("/Users/hoge") {
+	userHomePath, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	expectedConfigDirPath := filepath.Join(userHomePath, ".config", "filess")
+	if getConfigDirPath() != expectedConfigDirPath {
 		t.Fatal("Error")
 	}
 }
 
 func TestGetConfigFilePath(t *testing.T) {
-	if "/Users/hoge/.config/filess/config.json" != GetConfigFilePath("/Users/hoge") {
+	userHomePath, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	expectedConfigFilePath := filepath.Join(userHomePath, ".config", "filess", "config.json")
+	if GetConfigFilePath() != expectedConfigFilePath {
 		t.Fatal("Error")
 	}
 }

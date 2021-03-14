@@ -50,11 +50,7 @@ func AddToConfig(path, class string) {
 	if !existsDir(path) {
 		return
 	}
-	userPath, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
-	configFilePath := GetConfigFilePath(userPath)
+	configFilePath := GetConfigFilePath()
 	targets, sources, inspections := loadConfig(configFilePath)
 	switch class {
 	case "targets":
@@ -91,11 +87,7 @@ func AddToConfig(path, class string) {
 // Init はfiless initコマンドの実装である。
 // 設定ファイルを作成する。既に存在する場合は、上書きする。
 func Init() {
-	userPath, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
-	configDirPath := getConfigDirPath(userPath)
+	configDirPath := getConfigDirPath()
 	perm := os.ModeDir + (fs.ModePerm - 0022)
 	if err := os.MkdirAll(configDirPath, perm); err != nil {
 		log.Fatal(err)
@@ -111,7 +103,7 @@ func Init() {
 		log.Fatal(err)
 	}
 
-	configFilePath := GetConfigFilePath(userPath)
+	configFilePath := GetConfigFilePath()
 	file, err := os.Create(configFilePath)
 	if err != nil {
 		log.Fatal(err)
@@ -127,11 +119,7 @@ func Init() {
 // jsonPathが指定されてる時はそのJSONを、されていない時は設定の規定のJSONを使用する。
 func Filess(jsonPath string) {
 	if jsonPath == "" {
-		userPath, err := os.UserHomeDir()
-		if err != nil {
-			log.Fatal(err)
-		}
-		configFilePath := GetConfigFilePath(userPath)
+		configFilePath := GetConfigFilePath()
 		if existsFile(configFilePath) {
 			targets, sources, inspections := loadConfig(configFilePath)
 			move(targets, sources)
