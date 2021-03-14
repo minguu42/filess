@@ -50,7 +50,7 @@ func AddToConfig(path, class string) {
 	if !existsDir(path) {
 		return
 	}
-	configFilePath := getConfigFilePath()
+	configFilePath := GetConfigFilePath()
 	targets, sources, inspections := loadConfig(configFilePath)
 	switch class {
 	case "targets":
@@ -103,7 +103,7 @@ func Init() {
 		log.Fatal(err)
 	}
 
-	configFilePath := getConfigFilePath()
+	configFilePath := GetConfigFilePath()
 	file, err := os.Create(configFilePath)
 	if err != nil {
 		log.Fatal(err)
@@ -119,7 +119,7 @@ func Init() {
 // jsonPathが指定されてる時はそのJSONを、されていない時は設定の規定のJSONを使用する。
 func Filess(jsonPath string) {
 	if jsonPath == "" {
-		configFilePath := getConfigFilePath()
+		configFilePath := GetConfigFilePath()
 		if existsFile(configFilePath) {
 			targets, sources, inspections := loadConfig(configFilePath)
 			move(targets, sources)
