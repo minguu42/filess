@@ -23,7 +23,7 @@ func inspect(inspections []string) {
 			if file.IsDir() {
 				continue
 			}
-			shouldDelete := confirmIfRemoveFile(file.Name())
+			shouldDelete := confirmIfRemoveFile(inspection, file.Name())
 			if shouldDelete {
 				path := filepath.Join(inspection, file.Name())
 				if err := os.Remove(path); err != nil {
@@ -38,10 +38,10 @@ func inspect(inspections []string) {
 	}
 }
 
-func confirmIfRemoveFile(fileName string) bool {
+func confirmIfRemoveFile(inspection, fileName string) bool {
 	for {
 		var answer string
-		fmt.Printf("%s を削除しますか？（Y/n）: ", fileName)
+		fmt.Printf("%s を削除しますか？（Y/n）: ", filepath.Join(filepath.Base(inspection), fileName))
 		if _, err := fmt.Scan(&answer); err != nil {
 			log.Fatal(err)
 		}
